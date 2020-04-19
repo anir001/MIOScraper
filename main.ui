@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Scrapy</class>
+ <widget class="QWidget" name="Scrapy">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>436</width>
+    <height>378</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>436</width>
+    <height>378</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="toolTip">
+   <string/>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>421</width>
+     <height>361</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Scrapy</string>
+    </attribute>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>381</width>
+       <height>221</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Log</string>
+     </property>
+     <widget class="QPlainTextEdit" name="log_box">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>20</y>
+        <width>361</width>
+        <height>191</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QComboBox" name="comboBox_ip">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>50</y>
+       <width>191</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>172.16.172.66</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>172.29.172.66	</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>172.29.173.66</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>172.29.174.66</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>172.29.175.66</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>172.29.176.66</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>172.29.177.66</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>172.29.178.66</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QPushButton" name="connect_btn">
+     <property name="geometry">
+      <rect>
+       <x>230</x>
+       <y>50</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Connect</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="scrap_btn">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>320</x>
+       <y>50</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Scrap</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="file_adr">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>391</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>?Wpisz nazwę pliku... (AHC3021)</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="tab_2">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <attribute name="title">
+     <string>Info</string>
+    </attribute>
+    <widget class="QPlainTextEdit" name="plainTextEdit">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>10</y>
+       <width>411</width>
+       <height>321</height>
+      </rect>
+     </property>
+     <property name="plainText">
+      <string>To mały krok dla ludzkości, ale dla karła normalny.
+
+Copyright 2020 Deny
+
+MIOScraper jest wolnym oprogramowaniem: możesz go rozprowadzać dalej
+i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU,
+wydanej przez Fundację Wolnego Oprogramowania - według wersji 3 tej
+Licencji lub (według twojego wyboru) którejś z późniejszych wersji.
+
+MIOScraper rozpowszechniany jest z nadzieją, iż będzie on
+użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej
+gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH
+ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do     Powszechnej Licencji Publicznej GNU.
+
+Z pewnością wraz z MIOScraper otrzymałeś też egzemplarz
+Powszechnej Licencji Publicznej GNU (GNU General Public License).
+Jeśli nie - zobacz &lt;http://www.gnu.org/licenses/&gt;.</string>
+     </property>
+    </widget>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

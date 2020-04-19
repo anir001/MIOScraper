@@ -1,0 +1,6 @@
+Do działania potrzebne są:
+Python 3.5+
+Chrome
+
+instalacja modułów:
+python -m pip install -r requirements.txt
