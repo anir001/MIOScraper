@@ -137,7 +137,8 @@ class Scrap:
             dropdown = Select(self.driver.find_element_by_id('IBC_number'))
             dropdown.select_by_index(ibc)
 
-            self.get_page("http://{}:1269/".format(self.url))
+            #self.get_page("http://{}:1269/".format(self.url))
+            self.get_page(self.driver.current_url)
             self.get_card()
             self.get_adres()
             
