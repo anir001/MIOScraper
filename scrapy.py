@@ -142,7 +142,7 @@ class Scrap:
             self.get_card()
             self.get_adres()
             
-            for c in self.cards_adr:
+            for c in tqdm(self.cards_adr):
                 self.get_page("http://{}:1269/{}".format(self.url, c))
                 self.get_sn()
 
