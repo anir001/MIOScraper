@@ -24,6 +24,7 @@ Jeśli nie - zobacz <http://www.gnu.org/licenses/>.
 from bs4 import BeautifulSoup
 import requests
 import re
+from tqdm import tqdm
 
 from selenium import webdriver
 from selenium.webdriver.support.ui import Select
