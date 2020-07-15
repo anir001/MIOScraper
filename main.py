@@ -11,9 +11,6 @@ from scrapy import Scrap
 from datetime import datetime
 from save import save
 
-import queue
-from threading import Thread
-
 
 _ver = '1.0.2b'
 
@@ -79,7 +76,6 @@ class Window(QtWidgets.QMainWindow):
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
         self.log_box.appendPlainText("[{}]:\n{}".format(dt_string, str(txt)))
-
 
 
 
