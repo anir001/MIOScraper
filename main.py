@@ -1,24 +1,7 @@
 """
-To mały krok dla ludzkości, ale dla karła normalny.
-
-
-Copyright 2020 Deny
+Copyright 2020 anir001
 
 Ten plik jest częścią MIOScraper.
-
-MIOScraper jest wolnym oprogramowaniem: możesz go rozprowadzać dalej
-i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU,
-wydanej przez Fundację Wolnego Oprogramowania - według wersji 3 tej
-Licencji lub (według twojego wyboru) którejś z późniejszych wersji.
-
-MIOScraper rozpowszechniany jest z nadzieją, iż będzie on
-użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej
-gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH
-ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do     Powszechnej Licencji Publicznej GNU.
-
-Z pewnością wraz z MIOScraper otrzymałeś też egzemplarz
-Powszechnej Licencji Publicznej GNU (GNU General Public License).
-Jeśli nie - zobacz <http://www.gnu.org/licenses/>.
 """
 
 
