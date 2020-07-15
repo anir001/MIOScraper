@@ -21,13 +21,18 @@ Powszechnej Licencji Publicznej GNU (GNU General Public License).
 Jeśli nie - zobacz <http://www.gnu.org/licenses/>.
 """
 
+
 from PyQt5 import QtWidgets, uic, QtCore
 import sys
 from scrapy import Scrap
 from datetime import datetime
 from save import save
 
-_ver = '0.3b'
+import queue
+from threading import Thread
+
+
+_ver = '0.32b'
 
 
 class Window(QtWidgets.QMainWindow):
@@ -40,6 +45,7 @@ class Window(QtWidgets.QMainWindow):
         self.show()  # Show the GUI
         self.scrap = Scrap()
 
+        
     def scrapy_init(self):
         self.file_name = None
         self.adr_ip = '172.16.172.66'
@@ -66,10 +72,13 @@ class Window(QtWidgets.QMainWindow):
             self.scrap_button.setEnabled(True)
 
     def scrap(self):
-        log, data_to_save = self.scrap.scrap()
+        
+        log, data_to_save = self.scrap.scrap(self.file_adr_line.text())
+        
         self.log(log)
-
+        
         if self.connect_status:
+
             log = save(self.file_adr_line.text(), data_to_save)
             self.log(log)
             self.connect_status = False
@@ -87,6 +96,8 @@ class Window(QtWidgets.QMainWindow):
         dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
 
         self.log_box.appendPlainText("[{}]:\n{}".format(dt_string, str(txt)))
+
+
 
 
 if __name__ == '__main__':
