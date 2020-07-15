@@ -63,14 +63,14 @@ class Scrap():
         self.card_val = []
 
 
-        
+
         """Inicjalizacja selenium"""
         options = webdriver.ChromeOptions()
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--incognito')
         #options.add_argument('--headless')
         self.driver = webdriver.Chrome("chromedriver", chrome_options=options)
-        
+
     def get_page(self, url):
         try:
 
@@ -78,19 +78,19 @@ class Scrap():
             requests.get(url, timeout=2)
             """"""
             self.driver.get(url)
-            
+
             self.page = self.driver.page_source
             self.soup = BeautifulSoup(self.page, 'html.parser')
 
         except(ConnectionError, Exception) as e:
             self.log = "Coś poszło nie tak:\n{}".format(e)
-    
+
     def connect(self, url):
         self.soup = None
         self.url = url
 
         self.get_page("http://{}:1269".format(self.url))
-         
+
         if self.soup is not None:
             self.connect_status = True
             self.log = "Połączono"
@@ -100,7 +100,7 @@ class Scrap():
         self.table = self.soup.findAll('table')
         self.list_ibc = self.table[0].findAll('option')
         for l in self.list_ibc:
-            
+
             self.ibc.append(int(l.text))
 
     def get_card(self):
@@ -109,7 +109,7 @@ class Scrap():
         self.cards = self.cards[1].text
         self.cards = self.cards.split()
         self.cards_list += self.cards
-        
+
     def get_adres(self):
         self.table = self.soup.findAll('table')
         self.adr = self.table[1].findAll('tr')
@@ -143,32 +143,31 @@ class Scrap():
         self.ibc.clear()
         self.get_ibc()
         cab_names = []
-        
+
         for ibc in range(len(self.ibc)):
             print(f'ibc: {ibc}')
             dropdown = Select(self.driver.find_element_by_id('IBC_number'))
             dropdown.select_by_index(ibc)
-            
+
             #self.get_page("http://{}:1269/".format(self.url))
             self.get_page(self.driver.current_url)
             self.get_card()
             self.get_adres()
-            
+
             for c in tqdm(self.cards_adr):
                 self.get_page("http://{}:1269/{}".format(self.url, c))
                 self.get_sn()
 
 
         """przygotowanie do zapisu"""
-        
+
         for c in self.cards_list:
             self.card_val.append(_name_dict[c])
         lenght = len(self.card_val)
         for i in range(lenght):
             cab_names.append(file_name)
-            
+
         to_save = list(zip(cab_names, self.card_val, self.serials_n, self.cards_list))
 
         log = "Znaleziono {} kart I/O".format(len(self.serials_n))
         return log, to_save
-

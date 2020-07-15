@@ -10,7 +10,7 @@ import sys
 from scrapy import Scrap
 from datetime import datetime
 from save import save
-
+import re
 
 _ver = '1.0.2b'
 
@@ -25,7 +25,7 @@ class Window(QtWidgets.QMainWindow):
         self.show()  # Show the GUI
         self.scrap = Scrap()
 
-        
+
     def scrapy_init(self):
         self.file_name = None
         self.adr_ip = '172.16.172.66'
@@ -52,20 +52,24 @@ class Window(QtWidgets.QMainWindow):
             self.scrap_button.setEnabled(True)
 
     def scrap(self):
-        
-        log, data_to_save = self.scrap.scrap(self.file_adr_line.text())
-        
-        self.log(log)
-        
-        if self.connect_status:
+        valid = '^[\w\-. ]+$'
+        if re.match(valid, self.file_adr_line.text()):
 
-            log = save(self.file_adr_line.text(), data_to_save)
+            log, data_to_save = self.scrap.scrap(self.file_adr_line.text())
+
             self.log(log)
-            self.connect_status = False
-            self.scrap_button.setEnabled(False)
-        else :
-            log = 'Coś poszło nie tak ...'
-            self.log(log)
+
+            if self.connect_status:
+
+                log = save(self.file_adr_line.text(), data_to_save)
+                self.log(log)
+                self.connect_status = False
+                self.scrap_button.setEnabled(False)
+            else :
+                log = 'Coś poszło nie tak ...'
+                self.log(log)
+        else:
+            self.log('Niepoprawna nazwa pliku, spróbuj jeszcze raz.')
 
     def box_ip(self):
         self.adr_ip = self.comboBox_ip.currentText()
