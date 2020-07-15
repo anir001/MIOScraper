@@ -1,4 +1,4 @@
-Copyright 2020 Denis Sampolski
+Copyright 2020 anir001
 
 MIOScraper jest wolnym oprogramowaniem: możesz go rozprowadzać dalej
 i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU,
