@@ -14,8 +14,7 @@ Licencji lub (według twojego wyboru) którejś z późniejszych wersji.
 MIOScraper rozpowszechniany jest z nadzieją, iż będzie on
 użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej
 gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH
-ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do
-Powszechnej Licencji Publicznej GNU.
+ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do     Powszechnej Licencji Publicznej GNU.
 
 Z pewnością wraz z MIOScraper otrzymałeś też egzemplarz
 Powszechnej Licencji Publicznej GNU (GNU General Public License).
@@ -34,7 +33,33 @@ _pattern = '^MIO_select'
 _pattern2 = '^javascript'
 
 
-class Scrap:
+
+_name_dict = {'AI8C':'VALD201134L',
+            'AI8CN':'VALD201736L',
+            'AI8H':'VALD201189L',
+            'AI8V':'VALD201135',
+            'AII8C':'VALD201473L',
+            'AII8CN':'VALD201472L',
+            'AII8H':'VALD202388L',
+            'AII8V':'VALD201474L',
+            'AO4C':'VALD201136L',
+            'AO4H':'VALD201190L',
+            'AO4V':'VALD201137',
+            'AO8C':'VALD202098L',
+            'DI8N':'VALD201127L',
+            'DI8P':'VALD201126L',
+            'DO8N':'VALD201130',
+            'DO8P':'VALD201129L',
+            'DO8RO':'VALD201131L',
+            'DO8SO':'VALD201133',
+            'DI8M':'VALD201239L',
+            'TI4W3':'VALD201159L',
+            'TI4W4':'VALD201171L'}
+
+
+
+
+class Scrap():
     def __init__(self):
         self.url = None
         self.page = None
@@ -52,16 +77,17 @@ class Scrap:
         self.adr = None
         self.serials_n = []
         self.sn = 0
+        self.card_val = []
 
 
-
+        
         """Inicjalizacja selenium"""
         options = webdriver.ChromeOptions()
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--incognito')
-        options.add_argument('--headless')
+        #options.add_argument('--headless')
         self.driver = webdriver.Chrome("chromedriver", chrome_options=options)
-
+        
     def get_page(self, url):
         try:
 
@@ -69,19 +95,19 @@ class Scrap:
             requests.get(url, timeout=2)
             """"""
             self.driver.get(url)
-
+            
             self.page = self.driver.page_source
             self.soup = BeautifulSoup(self.page, 'html.parser')
 
         except(ConnectionError, Exception) as e:
             self.log = "Coś poszło nie tak:\n{}".format(e)
-
+    
     def connect(self, url):
         self.soup = None
         self.url = url
 
         self.get_page("http://{}:1269".format(self.url))
-
+         
         if self.soup is not None:
             self.connect_status = True
             self.log = "Połączono"
@@ -91,7 +117,7 @@ class Scrap:
         self.table = self.soup.findAll('table')
         self.list_ibc = self.table[0].findAll('option')
         for l in self.list_ibc:
-
+            
             self.ibc.append(int(l.text))
 
     def get_card(self):
@@ -100,7 +126,7 @@ class Scrap:
         self.cards = self.cards[1].text
         self.cards = self.cards.split()
         self.cards_list += self.cards
-
+        
     def get_adres(self):
         self.table = self.soup.findAll('table')
         self.adr = self.table[1].findAll('tr')
@@ -122,34 +148,44 @@ class Scrap:
         self.sn = self.sn[3].text
         self.sn = self.sn.split(':')
         self.sn = self.sn[1]
-        print(type(self.sn))
         if self.sn is not None:
             self.serials_n.append(self.sn)
         else:
             pass
 
-    def scrap(self):
+    def scrap(self, file_name):
         self.cards_adr.clear()
         self.cards_list.clear()
         self.serials_n.clear()
         self.ibc.clear()
         self.get_ibc()
-
+        cab_names = []
+        
         for ibc in range(len(self.ibc)):
+            print(f'ibc: {ibc}')
             dropdown = Select(self.driver.find_element_by_id('IBC_number'))
             dropdown.select_by_index(ibc)
-
+            
             #self.get_page("http://{}:1269/".format(self.url))
             self.get_page(self.driver.current_url)
             self.get_card()
             self.get_adres()
-
+            
             for c in tqdm(self.cards_adr):
                 self.get_page("http://{}:1269/{}".format(self.url, c))
                 self.get_sn()
 
+
         """przygotowanie do zapisu"""
-        to_save = list(zip(self.cards_list, self.serials_n))
+        
+        for c in self.cards_list:
+            self.card_val.append(_name_dict[c])
+        lenght = len(self.card_val)
+        for i in range(lenght):
+            cab_names.append(file_name)
+            
+        to_save = list(zip(cab_names, self.card_val, self.serials_n, self.cards_list))
 
         log = "Znaleziono {} kart I/O".format(len(self.serials_n))
         return log, to_save
+
