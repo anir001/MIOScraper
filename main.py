@@ -15,7 +15,7 @@ import queue
 from threading import Thread
 
 
-_ver = '0.32b'
+_ver = '1.0.2b'
 
 
 class Window(QtWidgets.QMainWindow):
