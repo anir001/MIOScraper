@@ -76,7 +76,7 @@ class Scrap():
         options = webdriver.ChromeOptions()
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--incognito')
-        #options.add_argument('--headless')
+        options.add_argument('--headless')
         self.driver = webdriver.Chrome("chromedriver", chrome_options=options)
                    
     def get_page(self, url):
