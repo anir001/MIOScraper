@@ -61,16 +61,24 @@ class Scrap():
         self.serials_n = []
         self.sn = 0
         self.card_val = []
+        self.driver_state = False
 
 
-
+#        """Inicjalizacja selenium"""
+#        options = webdriver.ChromeOptions()
+#        options.add_argument('--ignore-certificate-errors')
+#        options.add_argument('--incognito')
+#        #options.add_argument('--headless')
+#        self.driver = webdriver.Chrome("chromedriver", chrome_options=options)
+    def start_webdriver(self):
+        
         """Inicjalizacja selenium"""
         options = webdriver.ChromeOptions()
         options.add_argument('--ignore-certificate-errors')
         options.add_argument('--incognito')
         #options.add_argument('--headless')
         self.driver = webdriver.Chrome("chromedriver", chrome_options=options)
-
+                   
     def get_page(self, url):
         try:
 
@@ -86,6 +94,13 @@ class Scrap():
             self.log = "Coś poszło nie tak:\n{}".format(e)
 
     def connect(self, url):
+        try:
+            if not self.driver_state: 
+                self.start_webdriver()
+                self.driver_state = True
+        except :
+            print('Przeglądarka nie wystartowała.')        
+
         self.soup = None
         self.url = url
 
@@ -157,7 +172,10 @@ class Scrap():
             for c in tqdm(self.cards_adr):
                 self.get_page("http://{}:1269/{}".format(self.url, c))
                 self.get_sn()
-
+        
+        """Zamknięcie Chrome"""
+        self.driver.quit()
+        self.driver_state = False
 
         """przygotowanie do zapisu"""
 
