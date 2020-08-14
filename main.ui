@@ -153,7 +153,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>?Wpisz nazwę pliku... (AHC3021)</string>
+      <string>?Wpisz nazwę pliku...</string>
      </property>
     </widget>
    </widget>
@@ -177,10 +177,8 @@
       </rect>
      </property>
      <property name="plainText">
-      <string>To mały krok dla ludzkości, ale dla karła normalny.
-
-Copyright 2020 Deny
-
+      <string>
+Copyright 2020 Denis
 MIOScraper jest wolnym oprogramowaniem: możesz go rozprowadzać dalej
 i/lub modyfikować na warunkach Powszechnej Licencji Publicznej GNU,
 wydanej przez Fundację Wolnego Oprogramowania - według wersji 3 tej
@@ -189,7 +187,8 @@ Licencji lub (według twojego wyboru) którejś z późniejszych wersji.
 MIOScraper rozpowszechniany jest z nadzieją, iż będzie on
 użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej
 gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH
-ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do     Powszechnej Licencji Publicznej GNU.
+ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do     
+Powszechnej Licencji Publicznej GNU.
 
 Z pewnością wraz z MIOScraper otrzymałeś też egzemplarz
 Powszechnej Licencji Publicznej GNU (GNU General Public License).
