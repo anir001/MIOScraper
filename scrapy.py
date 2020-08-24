@@ -157,6 +157,7 @@ class Scrap():
         self.serials_n.clear()
         self.ibc.clear()
         self.get_ibc()
+        self.card_val.clear()
         cab_names = []
 
         for ibc in range(len(self.ibc)):
